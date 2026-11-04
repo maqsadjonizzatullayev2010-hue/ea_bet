@@ -1,0 +1,14 @@
+{
+  "name": "efootball-betting-bot",
+  "version": "1.0.0",
+  "description": "Telegram eFootball prediction and P2P deposit bot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.3.1",
+    "telegraf": "^4.16.3"
+  }
+}
