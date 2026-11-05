@@ -540,20 +540,22 @@ bot.command('addcoins', async (ctx) => {
   await ctx.reply(`✅ Foydalanuvchi (${targetId}) balansiga ${amount.toLocaleString()} UZS qoshildi.`);
   await bot.telegram.sendMessage(targetId, `🎁 Admin tomonidan balansingizga **${amount.toLocaleString()} UZS** qoshildi!`, { parse_mode: 'Markdown' });
 });
-// === MANA SHU YERGA HTTP SERVERNI QO'SHASIZ ===
+
+// 1. Avval botni ishga tushiramiz
+bot.launch()
+  .then(() => console.log('🤖 EA.BET Bot mukammal ishga tushdi!'))
+  .catch(err => console.error('Botni ishga tushirishda xatolik:', err));
+
+// 2. Keyin Render uchun HTTP serverni yoqamiz
 const http = require('http');
 const PORT = process.env.PORT || 3000;
 
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Bot is running!');
+  res.end('EA.BET Bot is running!');
 }).listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
-// ============================================
-bot.launch()
-  .then(() => console.log('🤖 EA.BET Bot mukammal ishga tushdi!'))
-  .catch(err => console.error('Botni ishga tushirishda xatolik:', err));
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
